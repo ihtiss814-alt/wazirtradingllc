@@ -1,0 +1,22 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer shield (black) -->
+  <path d="M256 18 L450 90 L450 280 Q450 420 256 498 Q62 420 62 280 L62 90 Z" fill="#1a1a1a"/>
+  <!-- Red accent ring -->
+  <path d="M256 38 L432 104 L432 278 Q432 404 256 476 Q80 404 80 278 L80 104 Z" fill="#C8102E"/>
+  <!-- White inner shield -->
+  <path d="M256 58 L414 118 L414 276 Q414 388 256 454 Q98 388 98 276 L98 118 Z" fill="#ffffff"/>
+  <!-- Red car silhouette arc at top -->
+  <g transform="translate(256, 165)">
+    <!-- Car body -->
+    <ellipse cx="0" cy="-8" rx="78" ry="22" fill="#C8102E"/>
+    <!-- Car roof -->
+    <path d="M-42 -8 Q-30 -38 0 -44 Q30 -38 42 -8 Z" fill="#C8102E"/>
+    <!-- Wheels suggestion -->
+    <ellipse cx="-52" cy="12" rx="18" ry="10" fill="#C8102E"/>
+    <ellipse cx="52" cy="12" rx="18" ry="10" fill="#C8102E"/>
+    <!-- Windshield cut -->
+    <path d="M-28 -8 Q-18 -32 0 -36 Q18 -32 28 -8 Z" fill="#ffffff"/>
+  </g>
+  <!-- Bold W letter -->
+  <text x="256" y="390" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="196" fill="#1a1a1a" text-anchor="middle" dominant-baseline="auto">W</text>
+</svg>

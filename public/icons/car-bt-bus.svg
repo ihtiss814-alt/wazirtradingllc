@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 58" fill="none">
+  <!-- Bus body -->
+  <rect x="8" y="10" width="42" height="36" rx="5" fill="#878787"/>
+
+  <!-- Windshield area background -->
+  <rect x="12" y="14" width="34" height="22" rx="3" fill="#F6F6F6" opacity="0.25"/>
+
+  <!-- Destination board -->
+  <rect x="15" y="12" width="28" height="5" rx="2.5" fill="#F6F6F6" opacity="0.5"/>
+
+  <!-- Left windshield pane -->
+  <rect x="13" y="19" width="14" height="14" rx="2" fill="#F6F6F6" opacity="0.4"/>
+
+  <!-- Right windshield pane -->
+  <rect x="31" y="19" width="14" height="14" rx="2" fill="#F6F6F6" opacity="0.4"/>
+
+  <!-- Centre pillar -->
+  <rect x="27.5" y="19" width="3" height="14" fill="#878787"/>
+
+  <!-- Grille / bumper strip -->
+  <rect x="10" y="38" width="38" height="4" rx="1.5" fill="#6B6B6B"/>
+
+  <!-- Grille slot -->
+  <rect x="18" y="39.5" width="22" height="1.5" rx="0.75" fill="#F6F6F6" opacity="0.4"/>
+
+  <!-- Left headlight -->
+  <ellipse cx="16" cy="36.5" rx="3.5" ry="3" fill="#F6F6F6" opacity="0.55"/>
+
+  <!-- Right headlight -->
+  <ellipse cx="42" cy="36.5" rx="3.5" ry="3" fill="#F6F6F6" opacity="0.55"/>
+
+  <!-- Left mirror arm -->
+  <rect x="4" y="18" width="4" height="8" rx="2" fill="#878787"/>
+
+  <!-- Right mirror arm -->
+  <rect x="50" y="18" width="4" height="8" rx="2" fill="#878787"/>
+
+  <!-- Left wheel -->
+  <rect x="13" y="44" width="8" height="6" rx="2" fill="#6B6B6B"/>
+
+  <!-- Right wheel -->
+  <rect x="37" y="44" width="8" height="6" rx="2" fill="#6B6B6B"/>
+</svg>
