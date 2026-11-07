@@ -47,9 +47,10 @@ export default async function ModelPage({ params }: Props) {
   const years = [...new Set(inventory.vehicles.map((vehicle) => vehicle.year).filter((year): year is number => year !== null))].sort((a, b) => b - a);
   const fuelTypes = [...new Set(inventory.vehicles.map((vehicle) => vehicle.fuel_type).filter((value): value is string => Boolean(value)))].sort();
   const bodyTypes = [...new Set(inventory.vehicles.map((vehicle) => vehicle.body_type).filter((value): value is string => Boolean(value)))].sort();
-  const categorySlugs: string[] = Array.from(new Set(inventory.vehicles
+  type VehicleTypeSlug = NonNullable<ReturnType<typeof vehicleTypeSlugFor>>;
+  const categorySlugs = Array.from(new Set(inventory.vehicles
     .map((vehicle) => vehicleTypeSlugFor(vehicle))
-    .filter((value): value is string => typeof value === "string" && value.length > 0)));
+    .filter((value): value is VehicleTypeSlug => value !== null)));
   const category = categorySlugs.length === 1 ? VEHICLE_CATEGORY_BY_SLUG.get(categorySlugs[0]) : undefined;
   const collectionSchema = collectionPageJsonLd({ name: title, description, url: `${siteConfig.url}/models/${model.slug}`, vehicles: inventory.vehicles });
 
