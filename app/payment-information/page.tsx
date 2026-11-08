@@ -61,7 +61,7 @@ export default function PaymentInformationPage() {
             </div>
             <Notice title="Bank-detail change warning" tone="warning">
               <p>Unexpected changes to account numbers, beneficiary names or payment destinations are a serious warning sign. Do not pay based only on a forwarded message, a new email address, a social-media account or instructions from an intermediary. Stop and verify the change using the contact details already published on this website.</p>
-              <p>Wazir Trading's published contact email is <a className="inline-link" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p>
+              <p>Wazir Trading&apos;s published contact email is <a className="inline-link" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p>
             </Notice>
           </div>
         </section>

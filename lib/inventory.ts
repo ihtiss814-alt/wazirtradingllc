@@ -63,7 +63,18 @@ export function parseInventoryFilters(params: Record<string, string | string[] |
   };
 }
 
-function applyFilters(query: any, filters: InventoryFilters) {
+type PublicSupabaseClient = NonNullable<ReturnType<typeof createPublicServerClient>>;
+
+function createAvailableCarsQuery(supabase: PublicSupabaseClient) {
+  return supabase
+    .from("cars")
+    .select(LIST_SELECT, { count: "exact" })
+    .eq("status", "available");
+}
+
+type AvailableCarsQuery = ReturnType<typeof createAvailableCarsQuery>;
+
+function applyFilters(query: AvailableCarsQuery, filters: InventoryFilters) {
   if (filters.q) {
     // Match each search word against any public vehicle field. This supports
     // combined searches such as "Toyota Aqua 2021" without a full-text schema.
@@ -121,10 +132,7 @@ const cachedInventory = unstable_cache(
     if (!supabase) return { cars: [], totalCount: 0, error: true };
     try {
       const from = (filters.page - 1) * INVENTORY_PAGE_SIZE;
-      let query = supabase
-        .from("cars")
-        .select(LIST_SELECT, { count: "exact" })
-        .eq("status", "available");
+      let query = createAvailableCarsQuery(supabase);
       query = applyFilters(query, filters);
       const { data, count, error } = await query.range(from, from + INVENTORY_PAGE_SIZE - 1);
       if (error) throw error;
@@ -195,7 +203,7 @@ const cachedFacets = unstable_cache(
           .eq("status", "available")
           .range(from, from + batchSize - 1);
         if (error) throw error;
-        allRows.push(...(data ?? []));
+        allRows.push(...((data ?? []) as unknown as SitemapVehicleRow[]));
         if (!data || data.length < batchSize) break;
       }
       const data = allRows;
@@ -289,12 +297,34 @@ export async function getRelatedVehicles(vehicle: Vehicle) {
   return cachedRelated(vehicle.make, vehicle.model, vehicle.body_type ?? "", vehicle.id);
 }
 
+type SitemapImageRow = {
+  image_url: string | null;
+};
+
+type SitemapVehicleRow = {
+  ref_number: string | null;
+  make: string | null;
+  model: string | null;
+  year: number | string | null;
+  variant: string | null;
+  mileage_km: number | string | null;
+  engine_cc: number | string | null;
+  fuel_type: string | null;
+  transmission: string | null;
+  body_type: string | null;
+  drive: string | null;
+  color: string | null;
+  auction_grade: string | null;
+  updated_at: string | null;
+  car_images: SitemapImageRow[] | null;
+};
+
 const cachedSitemapRefs = unstable_cache(
   async (): Promise<Array<{ ref_number: string; updated_at: string | null }>> => {
     const supabase = createPublicServerClient();
     if (!supabase) return [];
     try {
-      const allRows: any[] = [];
+      const allRows: SitemapVehicleRow[] = [];
       const batchSize = 1000;
       for (let from = 0; from < 5000; from += batchSize) {
         const { data, error } = await supabase
@@ -304,14 +334,38 @@ const cachedSitemapRefs = unstable_cache(
           .order("updated_at", { ascending: false, nullsFirst: false })
           .range(from, from + batchSize - 1);
         if (error) throw error;
-        allRows.push(...(data ?? []));
+        allRows.push(...((data ?? []) as unknown as SitemapVehicleRow[]));
         if (!data || data.length < batchSize) break;
       }
-      return allRows.filter((row: any) => {
-        const image = Array.isArray(row.car_images) && row.car_images.some((item: any) => /^https:\/\//i.test(item.image_url ?? "") && !/_map(?:\.[^.]+)?(?:\?.*)?$/i.test(String(item.image_url).split("/").pop() ?? ""));
-        const meaningful = [row.variant, row.mileage_km, row.engine_cc, row.fuel_type, row.transmission, row.body_type, row.drive, row.color, row.auction_grade].some((value) => value !== null && value !== undefined && String(value).trim() !== "");
-        return Boolean(row.ref_number && !/[\\/]/.test(row.ref_number) && row.make && row.model && row.year !== null && row.year !== undefined && Number.isFinite(Number(row.year)) && image && meaningful);
-      }).map((row: any) => ({ ref_number: String(row.ref_number), updated_at: row.updated_at ?? null }));
+      return allRows.filter((row) => {
+        const image = Array.isArray(row.car_images) && row.car_images.some((item) => {
+          const imageUrl = typeof item.image_url === "string" ? item.image_url : "";
+          const filename = imageUrl.split("/").pop() ?? "";
+          return /^https:\/\//i.test(imageUrl) && !/_map(?:\.[^.]+)?(?:\?.*)?$/i.test(filename);
+        });
+        const meaningfulValues: Array<string | number | null> = [
+          row.variant,
+          row.mileage_km,
+          row.engine_cc,
+          row.fuel_type,
+          row.transmission,
+          row.body_type,
+          row.drive,
+          row.color,
+          row.auction_grade,
+        ];
+        const meaningful = meaningfulValues.some((value) => value !== null && String(value).trim() !== "");
+        return Boolean(
+          row.ref_number
+          && !/[\\/]/.test(row.ref_number)
+          && row.make
+          && row.model
+          && row.year !== null
+          && Number.isFinite(Number(row.year))
+          && image
+          && meaningful,
+        );
+      }).map((row) => ({ ref_number: String(row.ref_number), updated_at: row.updated_at ?? null }));
     } catch (error) {
       console.error("Vehicle sitemap query failed:", error);
       return [];

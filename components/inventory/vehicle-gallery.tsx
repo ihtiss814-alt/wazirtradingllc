@@ -16,10 +16,19 @@ export function VehicleGallery({ images, vehicleName }: { images: VehicleImage[]
   const inspectionMap = sorted.find((image) => isMapVehicleImage(image.image_url));
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState(false);
+  const galleryImageCount = galleryImages.length;
   const current = galleryImages[active];
 
-  const previous = useCallback(() => setActive((index) => (index - 1 + galleryImages.length) % galleryImages.length), [galleryImages.length]);
-  const next = useCallback(() => setActive((index) => (index + 1) % galleryImages.length), [galleryImages.length]);
+  // Depend on a stable primitive rather than reading a property expression in
+  // the dependency array. This keeps React Compiler's memoization analysis clear.
+  const previous = useCallback(
+    () => setActive((index) => (index - 1 + galleryImageCount) % galleryImageCount),
+    [galleryImageCount],
+  );
+  const next = useCallback(
+    () => setActive((index) => (index + 1) % galleryImageCount),
+    [galleryImageCount],
+  );
 
   useEffect(() => {
     if (!lightbox) return;

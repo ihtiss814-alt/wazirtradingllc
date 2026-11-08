@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { siteConfig, whatsappUrl } from "@/lib/site";
 
@@ -18,6 +19,7 @@ const navigation = [
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
   const waLink = whatsappUrl(
     "Hello, I would like information about purchasing a Japanese used vehicle from Wazir Trading LLC.",
   );
@@ -25,6 +27,15 @@ export function SiteHeader() {
   function closeMenu() {
     setMenuOpen(false);
   }
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setMenuOpen(false);
+    }
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [menuOpen]);
 
   return (
     <>
@@ -50,7 +61,7 @@ export function SiteHeader() {
 
           <nav className="desktop-nav" aria-label="Main navigation">
             {navigation.map((item) => (
-              <Link key={item.href} href={item.href} className="nav-link">
+              <Link key={item.href} href={item.href} className="nav-link" aria-current={pathname === item.href || pathname.startsWith(`${item.href}/`) ? "page" : undefined}>
                 {item.label}
               </Link>
             ))}
@@ -76,7 +87,7 @@ export function SiteHeader() {
         {menuOpen ? (
           <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">
             {navigation.map((item) => (
-              <Link key={item.href} href={item.href} className="mobile-nav-link" onClick={closeMenu}>
+              <Link key={item.href} href={item.href} className="mobile-nav-link" aria-current={pathname === item.href || pathname.startsWith(`${item.href}/`) ? "page" : undefined} onClick={closeMenu}>
                 {item.label}
               </Link>
             ))}

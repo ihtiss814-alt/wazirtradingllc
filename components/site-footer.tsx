@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, CarFront, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { siteConfig, whatsappUrl } from "@/lib/site";
 
 export function SiteFooter() {
@@ -55,6 +55,11 @@ export function SiteFooter() {
             View Japan office area <ArrowUpRight size={13} />
           </a>
         </div>
+      </div>
+
+      <div className="mobile-action-bar" role="group" aria-label="Quick actions">
+        <Link href="/cars" className="mobile-action-browse"><CarFront size={18} /> Browse vehicles</Link>
+        <a href={waLink} target="_blank" rel="noreferrer" className="mobile-action-contact"><MessageCircle size={18} /> WhatsApp us</a>
       </div>
 
       <div className="site-container footer-bottom">

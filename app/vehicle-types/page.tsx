@@ -7,7 +7,7 @@ import { LandingBreadcrumbs, LandingCta, LandingHero, LandingLinkCard, LandingSe
 import { VEHICLE_CATEGORIES } from "@/lib/landing-pages";
 import { getLandingInventory, MIN_INDEXABLE_LANDING_VEHICLES, taxonomyIsIndexable } from "@/lib/seo-landings";
 import { pageMetadata } from "@/lib/page-metadata";
-import { allowIndexing, siteConfig } from "@/lib/site";
+import { allowIndexing } from "@/lib/site";
 
 export const revalidate = 300;
 

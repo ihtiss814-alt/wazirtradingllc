@@ -48,7 +48,7 @@ export default async function DestinationGuidePage({ params }: Props) {
         <section className="seo-landing-section">
           <div className="site-container">
             {preview ? (
-              <div className="seo-destination-draft-notice"><ShieldAlert size={22} /><div><strong>Research preview — not an export-service confirmation</strong><p>This country page is not approved for search indexing. Wazir Trading's current service coverage, shipping route and ability to handle a specific order for {guide.country} have not been independently confirmed in this project. Ask the team for written confirmation before treating any export arrangement as available.</p></div></div>
+              <div className="seo-destination-draft-notice"><ShieldAlert size={22} /><div><strong>Research preview — not an export-service confirmation</strong><p>This country page is not approved for search indexing. Wazir Trading&apos;s current service coverage, shipping route and ability to handle a specific order for {guide.country} have not been independently confirmed in this project. Ask the team for written confirmation before treating any export arrangement as available.</p></div></div>
             ) : null}
             {guide.sections.map((section, index) => (
               <section className="seo-editorial-section" key={section.title}>
@@ -67,7 +67,7 @@ export default async function DestinationGuidePage({ params }: Props) {
             <div className="seo-source-grid">
               {guide.sources.map((source) => <a key={source.url} className="seo-source-card" href={source.url} target="_blank" rel="noopener noreferrer"><span>{source.publisher}</span><strong>{source.label}</strong><small>{source.note}</small><b>Open official source <ArrowUpRight size={14} /></b></a>)}
             </div>
-            <p className="seo-legal-disclaimer">This page is general buyer research, not legal, tax, customs or financial advice. The buyer must verify the current rules and the correct import route with the relevant government authority or a licensed customs professional. A vehicle's export from Japan does not guarantee its import eligibility or registration.</p>
+            <p className="seo-legal-disclaimer">This page is general buyer research, not legal, tax, customs or financial advice. The buyer must verify the current rules and the correct import route with the relevant government authority or a licensed customs professional. A vehicle&apos;s export from Japan does not guarantee its import eligibility or registration.</p>
           </div>
         </section>
         <LandingCta

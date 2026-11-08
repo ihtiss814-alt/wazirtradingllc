@@ -58,7 +58,7 @@ export default function ContactPage() {
       <main id="main-content">
         <TrustPageHero
           eyebrow="Contact Wazir Trading LLC · Japan"
-          title={<>Let's discuss your <em>vehicle or export enquiry.</em></>}
+          title={<>Let&apos;s discuss your <em>vehicle or export enquiry.</em></>}
           description="Contact the Japan-based team about a vehicle reference, sourcing requirement, shipping route or payment document. Include your destination country so the enquiry can be considered in context."
           actions={[{ href: waLink, label: "Chat on WhatsApp", external: true }, { href: `mailto:${siteConfig.email}`, label: "Send an email", variant: "secondary", external: true }]}
           aside={<div className="trust-hero-stat-card"><span className="trust-card-overline">Direct contact</span><MessageCircle size={31} /><strong>{whatsapp}</strong><span>WhatsApp · International format</span></div>}

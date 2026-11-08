@@ -73,7 +73,7 @@ export default async function VehicleTypePage({ params }: Props) {
         <section className="seo-landing-section seo-landing-section-muted">
           <div className="site-container seo-two-column-content">
             <div><LandingSectionHeading eyebrow="Buyer checklist" title={`What to compare when choosing ${category.shortName.toLowerCase()}.`} description="Use these checks alongside the exact vehicle record and a destination-specific import review." /><LandingFeatureList items={category.buyerChecks} /></div>
-            <aside className="seo-editorial-note"><span className="eyebrow">Before you commit</span><h3>One category can contain very different vehicles.</h3><p>Make decisions from the individual vehicle's recorded variant, year, specifications, images, condition information and written quotation. A category label is only a starting point.</p><Link href="/how-it-works" className="seo-inline-link">Understand the buying process <ArrowRight size={15} /></Link></aside>
+            <aside className="seo-editorial-note"><span className="eyebrow">Before you commit</span><h3>One category can contain very different vehicles.</h3><p>Make decisions from the individual vehicle&apos;s recorded variant, year, specifications, images, condition information and written quotation. A category label is only a starting point.</p><Link href="/how-it-works" className="seo-inline-link">Understand the buying process <ArrowRight size={15} /></Link></aside>
           </div>
         </section>
         <LandingCta message={`Hello, I am interested in ${category.shortName} from Japan. Please share the available options and the information needed to confirm export arrangements for my destination.`} />

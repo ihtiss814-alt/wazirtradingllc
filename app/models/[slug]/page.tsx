@@ -82,7 +82,7 @@ export default async function ModelPage({ params }: Props) {
                 {bodyTypes.length ? <span><strong>Body types</strong>{bodyTypes.join(", ")}</span> : null}
               </div>
             </div>
-            <aside className="seo-editorial-note"><span className="eyebrow">Buying guidance</span><h3>Model name alone is not a condition report.</h3><p>Review each unit's photographs, auction or inspection information (where supplied), mileage, equipment and sale terms. Confirm destination eligibility with the relevant local authority before purchase.</p><Link href="/how-it-works" className="seo-inline-link">How the purchase process works <ArrowRight size={15} /></Link></aside>
+            <aside className="seo-editorial-note"><span className="eyebrow">Buying guidance</span><h3>Model name alone is not a condition report.</h3><p>Review each unit&apos;s photographs, auction or inspection information (where supplied), mileage, equipment and sale terms. Confirm destination eligibility with the relevant local authority before purchase.</p><Link href="/how-it-works" className="seo-inline-link">How the purchase process works <ArrowRight size={15} /></Link></aside>
           </div>
           {category ? <div className="site-container seo-related-taxonomy"><LandingLinkCard href={`/vehicle-types/${category.slug}`} title={category.shortName} description={`Browse other available vehicles in the ${category.shortName.toLowerCase()} category.`} meta="VEHICLE CATEGORY" /></div> : null}
         </section>

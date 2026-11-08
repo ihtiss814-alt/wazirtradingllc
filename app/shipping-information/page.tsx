@@ -38,7 +38,7 @@ export default function ShippingInformationPage() {
             <SectionHeading eyebrow="Shipping methods" title="Two common ways to move a vehicle by sea." description="The method that can be used is not universal. It depends on the destination service, vehicle dimensions and condition, carrier requirements and current sailing availability." align="center" />
             <div className="trust-feature-grid trust-feature-grid-2">
               <FeatureCard icon={<Ship size={23} />} title="RoRo (Roll-on / Roll-off)">
-                <p>Vehicles that meet the carrier's acceptance requirements are driven or moved onto a specialized vehicle ship and secured for the voyage. At the destination, they are driven or moved off the vessel.</p>
+                <p>Vehicles that meet the carrier&apos;s acceptance requirements are driven or moved onto a specialized vehicle ship and secured for the voyage. At the destination, they are driven or moved off the vessel.</p>
                 <ul className="trust-mini-list"><li>Designed for wheeled, operable cargo accepted by the carrier.</li><li>Vehicle access and personal effects restrictions are carrier-specific.</li><li>Service availability depends on the destination and sailing.</li></ul>
               </FeatureCard>
               <FeatureCard icon={<Container size={23} />} title="Container shipping">
@@ -79,7 +79,7 @@ export default function ShippingInformationPage() {
             <div className="trust-side-panel">
               <Waves size={25} />
               <h3>Understand the full cost.</h3>
-              <p>A vehicle's FOB price is not the same as the total amount payable to receive it in your country. Ask for an itemized quotation that states what is included and what remains payable at destination.</p>
+              <p>A vehicle&apos;s FOB price is not the same as the total amount payable to receive it in your country. Ask for an itemized quotation that states what is included and what remains payable at destination.</p>
               <p>Import duty, taxes, customs clearance, inspection, registration, inland delivery and compliance costs may be separate. Confirm them with the relevant destination authority or a qualified local agent.</p>
               <Link className="text-link" href="/payment-information">Review payment and quotation guidance <span>→</span></Link>
             </div>

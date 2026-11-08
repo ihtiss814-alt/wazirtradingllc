@@ -60,7 +60,7 @@ export default async function MakePage({ params }: Props) {
         <section className="seo-landing-section">
           <div className="site-container">
             <div className="seo-results-heading"><div><span className="eyebrow">Current inventory</span><h2>{make.name} vehicles to review</h2><p>Vehicle availability and export suitability must be confirmed for the specific unit and destination.</p></div><Link href="/cars" className="seo-inline-link">Main inventory <ArrowRight size={15} /></Link></div>
-            {inventory.error ? <div className="seo-empty-panel"><CarFront size={32} /><h3>Vehicle records could not be loaded.</h3><p>Please try again shortly.</p></div> : inventory.vehicles.length ? <div className="vehicle-grid">{inventory.vehicles.map((vehicle) => <VehicleCard key={vehicle.id} vehicle={vehicle} />)}</div> : <div className="seo-empty-panel"><CarFront size={32} /><h3>No vehicles currently meet this page's detail standard.</h3><p>Ask the team about current availability or a sourcing request.</p></div>}
+            {inventory.error ? <div className="seo-empty-panel"><CarFront size={32} /><h3>Vehicle records could not be loaded.</h3><p>Please try again shortly.</p></div> : inventory.vehicles.length ? <div className="vehicle-grid">{inventory.vehicles.map((vehicle) => <VehicleCard key={vehicle.id} vehicle={vehicle} />)}</div> : <div className="seo-empty-panel"><CarFront size={32} /><h3>No vehicles currently meet this page&apos;s detail standard.</h3><p>Ask the team about current availability or a sourcing request.</p></div>}
             <SeoIndexNote />
           </div>
         </section>
